@@ -21,12 +21,7 @@ server.use(bodyParser.json());
 setupAuth(server);
 
 server.use('/graphql', graphqlExpress((req) => {
-  if (req.user) {
-    return { schema, context: { user: req.user } };
-  } else {
-    return { schema };
-  }
- 
+  return { schema, context: { user: req.user } };
 }));
 
 server.use('/graphiql', graphiqlExpress({

@@ -34,11 +34,22 @@ type Ship {
   shipTypeName: String!
 }
 
+type User {
+  uid: String!
+  characterName: String!
+  corporation: String!
+  alliance: String
+  accountStatus: String!
+  authGroups: [String]
+  characterId: Int!
+}
+
 # This type specifies the entry points into our API. In this case
 # there is only one - "channels" - which returns a list of channels.
 type Query {
    doctrines: [Doctrine]    # "[]" means this is a list of channels
    doctrine(id: ID): Doctrine
+   currentUser: User
 }
 
 type Mutation {

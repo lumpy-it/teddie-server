@@ -67,11 +67,19 @@ const resolvers = {
     },
     doctrine: (obj, { id }, context) => {
       return doctrines.filter(d => d.id = id)[0];
+    },
+    currentUser: (root, args, context) => {
+      return context.user || null;
     }
   },
   ShipEntry: {
     ship: (shipEntry) => {
       return ships[shipEntry.ship];
+    }
+  },
+  User: {
+    characterId: (root, args, context) => {
+      return parseInt(context.user.crestToken[0].split(":")[0]);
     }
   }
 };

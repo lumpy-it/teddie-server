@@ -20,7 +20,6 @@ function(accessToken, refreshToken, profile, cb) {
     profile.accessToken = accessToken;
     profile.lastUpdate = Date.now();
     let user = userStore.createOrUpdate(profile);
-    console.log(user);
     cb(null, user);
 });
 
@@ -37,13 +36,12 @@ function setupAuth(server) {
         let user = userStore.deserialize(serial);
 
         // check if data is upToDate
-        if(Date.now() - user.lastUpdate > 1000*2 ) {
+        if(Date.now() - user.lastUpdate > 1000*60*60*24 ) {
             strategy.userProfile(user.accessToken, (err, result) => {
                 let newUser = result;
                 result.accessToken = user.accessToken;
                 result.lastUpdate = Date.now();
                 userStore.update(user);
-                console.log("updated user from pizza");
             });
         }
         cb(null, user);
