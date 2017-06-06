@@ -2,9 +2,9 @@
   "name": "teddie-server",
   "version": "1.0.0",
   "description": "Graphql TEDDIE server",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon ./server.js",
+    "start": "nodemon ./src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mikokoel",
